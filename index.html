@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<title>AACoding04 Final </title>
+<style>
+body {
+  background-color: lightpink;
+}
+
+h1 {
+  background-color: lightblue;
+  maegin: auto;
+  width: 40%;
+  border: 3px solid black;
+  padding: 10px;
+}
+
+}.correct{
+  background:green;
+}
+
+.incorrect{
+  background:red;
+}
+</style>
+</head>
+<body translate="no">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad" controls>
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<audio id="right" controls>
+<source src="https://docs.google.com/a/seattleacademy.org/uc?export=open&id=1-aZE-CoAKOUQxnfamAJ5Msx_dVfnoBgo" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<h1>Della's Math Problems</h1>
+<div>Timer: <span id="theTime">0</span> Score: <span id="score">0</span></div>
+<ol>
+<li> \(2+3\) <input data-correct="5" /> </li>
+<li> \(18*3\) <input data-correct="54" /> </li>
+<li>\( 2^3 \) <input data-correct="8" /> </li>
+<li>\( 7^4 \) <input data-correct="2401" /> </li>
+<li>\( 5^3 \) <input data-correct="125" /> </li>
+<li>\( 8^2 \) <input data-correct="64" /> </li>
+<li>\( \sqrt[3]{8} \) <input data-correct="2" /></li>
+<li>\( \sqrt[3]{64} \) <input data-correct="4" /></li>
+<li>\( \sqrt[4]{81} \) <input data-correct="3" /></li>
+<li>\( 8^\frac{1}{4} \) <input data-correct="2" /></li>
+</li>
+</ol>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script id="rendered-js">
+console.clear();
+const sad = document.getElementById("sad");
+const right = document.getElementById("right");
+
+setInterval(upTime, 1000);
+
+function upTime() {
+  let theTime = Number($("#theTime").text());
+  theTime = theTime + 1;
+  $("#theTime").text(theTime);
+}
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+
+  if (correct == response) {
+  right.play();
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+    let theScore = Number($("#score").text());
+    theScore = theScore + 1;
+    $("#score").text(theScore);
+  } else {
+    if (Math.random() > 0.1) {
+      sad.play();
+  
+    }
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+  }
+}
+    </script>
+</body>
+</html>
